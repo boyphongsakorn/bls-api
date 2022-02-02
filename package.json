@@ -1,0 +1,23 @@
+{
+  "name": "bls-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boyphongsakorn/bls-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boyphongsakorn/bls-api/issues"
+  },
+  "homepage": "https://github.com/boyphongsakorn/bls-api#readme",
+  "dependencies": {
+    "node-fetch": "^3.2.0"
+  }
+}
