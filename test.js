@@ -103,9 +103,11 @@ function random_item(items) {
                     console.log('firstChild.data not found')
                 }
             });
-            console.log(mobile_td.toArray()[7].firstChild.data)
-            if (mobile_td.toArray()[7].firstChild.data) {
-                donevar = true;
+            //console.log(mobile_td.toArray()[7].firstChild.data)
+            if (mobile_td.toArray().length > 5) {
+                if(mobile_td.toArray()[7].firstChild.data) {
+                    donevar = true;
+                }
             }
         }
     }
