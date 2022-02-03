@@ -89,14 +89,15 @@ function random_item(items) {
             //cheerio console log mobile_td InnerText
             //console.log(mobile_td);
             //console.log(mobile_td)
-            //let hee = 0;
+            let hee = 0;
             mobile_td.toArray().forEach(element => {
                 //console.log(element.firstChild.data)
                 try {
                     if (element.firstChild.data != 'Cloudflare') {
                         //hee++;
-                        //console.log(element.firstChild.data)
-                        //console.log(hee)
+                        console.log(element.firstChild.data)
+                        console.log(hee)
+                        hee++;
                     }
                 } catch (error) {
                     console.log('firstChild.data not found')
