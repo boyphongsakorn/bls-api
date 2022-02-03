@@ -64,7 +64,15 @@ function random_item(items) {
         await page.setUserAgent(UA);
         await page.setJavaScriptEnabled(true);
         await page.setDefaultNavigationTimeout(0);
-        await page.goto('https://www.blacklistseller.com/report/report_preview/146052', { waitUntil: 'networkidle0' });
+        await page.goto('https://www.blacklistseller.com/report/report_preview/3', { waitUntil: 'networkidle0' });
+
+        //if page has notfound class, then it means the page is not found
+        if (await page.$('.notfound') !== null) {
+            console.log('Page not found');
+            await browser.close();
+            donevar = true;
+            break;
+        }
 
         //get html
         const html = await page.content();
