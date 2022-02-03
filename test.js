@@ -82,4 +82,5 @@ function random_item(items) {
             console.log(element.firstChild.data)
         }
     });
+    console.log(mobile_td.toArray()[12].firstChild.data)
 })();
