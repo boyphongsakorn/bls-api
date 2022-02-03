@@ -14,7 +14,7 @@ function random_item(items) {
     const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36';
 
     //const oldProxyUrl = process.env.PROXY_SERVER || 'http://14.207.125.75:8080';
-    let proxylist = [];
+    /*let proxylist = [];
     await fetch('https://www.proxy-list.download/api/v1/get?type=http')
         .then(res => res.text())
         .then((body) => {
@@ -34,15 +34,15 @@ function random_item(items) {
                 '--no-sandbox', '--disable-setuid-sandbox', `--proxy-server=${newProxyUrl}`
             ], ignoreHTTPSErrors: true, dumpio: false
         }
-    );
+    );*/
 
-    /*let browser = await puppeteer.launch(
+    let browser = await puppeteer.launch(
         {
             headless: true, executablePath: process.env.CHROME_BIN || null, args: [
                 '--no-sandbox', '--disable-setuid-sandbox'
             ], ignoreHTTPSErrors: true, dumpio: false
         }
-    );*/
+    );
 
     let page = await browser.newPage();
     const userAgent = randomUseragent.getRandom();
