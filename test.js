@@ -13,7 +13,7 @@ function random_item(items) {
 (async () => {
     let donevar = false;
     //loop 100 times
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 1; i++) {
         //create with donevar = true end the loop
         while (!donevar) {
             const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36';
@@ -79,7 +79,7 @@ function random_item(items) {
             //get html
             const html = await page.content();
             //console.log(html);
-            console.log(html);
+            //console.log(html);
 
             await browser.close();
 
@@ -89,21 +89,21 @@ function random_item(items) {
             //cheerio console log mobile_td InnerText
             //console.log(mobile_td);
             //console.log(mobile_td)
-            let hee = 0;
+            //let hee = 0;
             mobile_td.toArray().forEach(element => {
                 //console.log(element.firstChild.data)
                 try {
                     if (element.firstChild.data != 'Cloudflare') {
-                        hee++;
-                        console.log(element.firstChild.data)
-                        console.log(hee)
+                        //hee++;
+                        //console.log(element.firstChild.data)
+                        //console.log(hee)
                     }
                 } catch (error) {
                     console.log('firstChild.data not found')
                 }
             });
-            console.log(mobile_td.toArray()[11].firstChild.data)
-            if (mobile_td.toArray()[11].firstChild.data) {
+            console.log(mobile_td.toArray()[7].firstChild.data)
+            if (mobile_td.toArray()[7].firstChild.data) {
                 donevar = true;
             }
         }
