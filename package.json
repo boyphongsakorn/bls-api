@@ -18,6 +18,13 @@
   },
   "homepage": "https://github.com/boyphongsakorn/bls-api#readme",
   "dependencies": {
-    "node-fetch": "^3.2.0"
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.2",
+    "node-fetch": "^3.2.0",
+    "proxy-chain": "^1.0.4",
+    "puppeteer": "^13.1.3",
+    "puppeteer-extra": "^3.2.3",
+    "puppeteer-extra-plugin-stealth": "^2.9.0",
+    "random-useragent": "^0.5.0"
   }
 }
