@@ -14,7 +14,7 @@ function random_item(items) {
     let donevar
     let namelist = [];
     //loop 100 times
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 1; i++) {
         donevar = false;
         //create with donevar = true end the loop
         while (!donevar) {
@@ -110,6 +110,13 @@ function random_item(items) {
                         }
                         hee++;
                     }
+                } catch (error) {
+                    console.log('firstChild.data not found')
+                }
+            });
+            $('td').toArray().forEach(element => {
+                try {
+                    console.log(element.firstChild.data)
                 } catch (error) {
                     console.log('firstChild.data not found')
                 }
