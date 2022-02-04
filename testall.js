@@ -76,6 +76,8 @@ function random_item(items) {
         await page.setDefaultNavigationTimeout(0);
         await page.goto('https://www.blacklistseller.com/report/report_search_success_page?bank_number=&first_name=พงศกร&last_name=', { waitUntil: 'networkidle0' });
 
+        let skip = false;
+        
         try {
             console.log(await page.content());
             /*$('a').toArray().forEach(function (element) {
@@ -105,7 +107,6 @@ function random_item(items) {
             //console.log(mobile_td)
             //let hee = 0;
             let flname
-            let skip = false;
             /*$('a').toArray().forEach(function (element) {
                 if (element.firstChild.data == 'Cloudflare') {
                     skip = true;
