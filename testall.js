@@ -121,6 +121,11 @@ function random_item(items) {
         //if (flname) {
             donevar = true;
         //}
+        $('a').toArray().forEach(function (element) {
+            if (element.firstChild.data == 'Cloudflare') {
+                skip = true;
+            }
+        });
         mobile_td.toArray().forEach(element => {
             //console.log(element.firstChild.data)
             try {
