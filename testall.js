@@ -103,6 +103,7 @@ function random_item(items) {
             mobile_td.toArray().forEach(element => {
                 //console.log(element.firstChild.data)
                 try {
+                    console.log(mobile_td.toArray().length)
                     console.log(element.firstChild.data)
                     console.log(hee)
                     hee++;
