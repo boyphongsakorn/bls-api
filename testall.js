@@ -76,6 +76,8 @@ function random_item(items) {
         await page.setDefaultNavigationTimeout(0);
         await page.goto('https://www.blacklistseller.com/report/report_search_success_page?bank_number=&first_name=พงศกร&last_name=', { waitUntil: 'networkidle0' });
 
+        console.log(await page.content());
+
         //get html
         const html = await page.content();
         console.log(html);
