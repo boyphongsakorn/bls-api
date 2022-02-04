@@ -78,12 +78,18 @@ function random_item(items) {
 
         try {
             console.log(await page.content());
+            $('a').toArray().forEach(function (element) {
+                if (element.firstChild.data == 'Cloudflare') {
+                    skip = true;
+                }
+            });
         } catch (error) {
             //skip loop
-            donevar = true;
+            //donevar = false;
+            skip = true;
         }
 
-        if (!donevar) {
+        if (!skip) {
             //get html
             const html = await page.content();
             console.log(html);
