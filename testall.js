@@ -92,7 +92,7 @@ function random_item(items) {
         if (!skip) {
             //get html
             const html = await page.content();
-            console.log(html);
+            //console.log(html);
             //console.log(html);
 
             await browser.close();
@@ -142,7 +142,9 @@ function random_item(items) {
                 //console.log(element.firstChild.data)
                 try {
                     console.log(mobile_td.toArray().length)
+                    console.log('---')
                     console.log(element.firstChild.data)
+                    console.log('---')
                     console.log(hee)
                     //hee++;
                 } catch (error) {
