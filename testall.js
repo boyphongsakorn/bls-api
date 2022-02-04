@@ -136,6 +136,7 @@ function random_item(items) {
             $('a').toArray().forEach(function (element) {
                 if (element.firstChild.data == 'Cloudflare') {
                     skip = true;
+                    donevar = false;
                 }
             });
             mobile_td.toArray().forEach(element => {
