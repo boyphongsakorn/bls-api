@@ -98,13 +98,13 @@ function random_item(items) {
                         //hee++;
                         console.log(element.firstChild.data)
                         console.log(hee)
-                        hee++;
+                        //hee++;
                         //if element.firstChild.data like name, then get the name
                         if (hee==7) {
                             flname = element.firstChild.data
                             console.log(flname)
                         }
-                        //hee++;
+                        hee++;
                     }
                 } catch (error) {
                     console.log('firstChild.data not found')
