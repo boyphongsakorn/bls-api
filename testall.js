@@ -78,11 +78,11 @@ function random_item(items) {
 
         try {
             console.log(await page.content());
-            $('a').toArray().forEach(function (element) {
+            /*$('a').toArray().forEach(function (element) {
                 if (element.firstChild.data == 'Cloudflare') {
                     skip = true;
                 }
-            });
+            });*/
         } catch (error) {
             //skip loop
             //donevar = false;
