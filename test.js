@@ -75,7 +75,7 @@ function random_item(items) {
                 console.log('Page not found');
                 await browser.close();
                 donevar = true;
-                continue;
+                break;
             }
 
             //get html
@@ -123,6 +123,9 @@ function random_item(items) {
             if(flname) {
                 donevar = true;
             }
+
+            // wait 2 seconds for next loop
+            await new Promise(resolve => setTimeout(resolve, 2000));
         }
     }
     console.log(namelist)
