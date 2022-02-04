@@ -105,7 +105,6 @@ function random_item(items) {
                         if (hee==8) {
                             //convert to string
                             flname = element.firstChild.data
-                            namelist.push(flname)
                             console.log(flname)
                         }
                         hee++;
@@ -126,6 +125,9 @@ function random_item(items) {
             console.log($('td').toArray()[2].firstChild.data)
             console.log($('td').toArray()[3].firstChild.data)
             console.log($('td').toArray()[5].firstChild.data)
+            //remove all the white space from $('td').toArray()[5].firstChild.data
+            let webpage = $('td').toArray()[5].firstChild.data.replace(/\s/g, '');
+            namelist.push([flname,$('td').toArray()[2].firstChild.data,$('td').toArray()[3].firstChild.data,webpage,,,])
             //console.log(mobile_td.toArray()[7].firstChild.data)
             /*if (mobile_td.toArray().length > 5) {
                 if(mobile_td.toArray()[7].firstChild.data) {
