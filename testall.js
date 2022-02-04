@@ -67,8 +67,9 @@ function random_item(items) {
         await page.setDefaultNavigationTimeout(0);
         await page.goto('https://www.blacklistseller.com/report/report_search_success_page?bank_number=&first_name=%E0%B8%9E%E0%B8%87%E0%B8%A8%E0%B8%81%E0%B8%A3&last_name=', { waitUntil: 'networkidle0' });
 
-        await page.waitForNavigation();
-        
+        //wait domcontentloaded
+        await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
+
         //get html
         const html = await page.content();
         //console.log(html);
