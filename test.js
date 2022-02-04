@@ -11,9 +11,9 @@ function random_item(items) {
 }
 
 (async () => {
-    let donevar = false;
     //loop 100 times
     for (let i = 0; i < 1; i++) {
+        let donevar = false;
         //create with donevar = true end the loop
         while (!donevar) {
             const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36';
@@ -90,13 +90,20 @@ function random_item(items) {
             //console.log(mobile_td);
             //console.log(mobile_td)
             let hee = 0;
+            let flname
             mobile_td.toArray().forEach(element => {
                 //console.log(element.firstChild.data)
                 try {
                     if (element.firstChild.data != 'Cloudflare') {
                         //hee++;
-                        console.log(element.firstChild.data)
+                        /*console.log(element.firstChild.data)
                         console.log(hee)
+                        hee++;*/
+                        //if element.firstChild.data like name, then get the name
+                        if (hee==7) {
+                            flname = element.firstChild.data
+                            console.log(flname)
+                        }
                         hee++;
                     }
                 } catch (error) {
@@ -104,10 +111,13 @@ function random_item(items) {
                 }
             });
             //console.log(mobile_td.toArray()[7].firstChild.data)
-            if (mobile_td.toArray().length > 5) {
+            /*if (mobile_td.toArray().length > 5) {
                 if(mobile_td.toArray()[7].firstChild.data) {
                     donevar = true;
                 }
+            }*/
+            if(flname) {
+                donevar = true;
             }
         }
     }
