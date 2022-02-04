@@ -72,7 +72,7 @@ function random_item(items) {
 
         //get html
         const html = await page.content();
-        //console.log(html);
+        console.log(html);
         //console.log(html);
 
         await browser.close();
