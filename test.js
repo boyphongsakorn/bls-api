@@ -11,8 +11,9 @@ function random_item(items) {
 }
 
 (async () => {
+    let namelist = [];
     //loop 100 times
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 100; i++) {
         let donevar = false;
         //create with donevar = true end the loop
         while (!donevar) {
@@ -78,7 +79,7 @@ function random_item(items) {
 
             //get html
             const html = await page.content();
-            console.log(html);
+            //console.log(html);
             //console.log(html);
 
             await browser.close();
@@ -96,13 +97,14 @@ function random_item(items) {
                 try {
                     if (element.firstChild.data != 'Cloudflare') {
                         //hee++;
-                        console.log(element.firstChild.data)
-                        console.log(hee)
+                        //console.log(element.firstChild.data)
+                        //console.log(hee)
                         //hee++;
                         //if element.firstChild.data like name, then get the name
                         if (hee==8) {
                             //convert to string
                             flname = element.firstChild.data
+                            namelist.push(flname)
                             console.log(flname)
                         }
                         hee++;
@@ -122,4 +124,5 @@ function random_item(items) {
             }
         }
     }
+    console.log(namelist)
 })();
