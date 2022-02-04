@@ -76,66 +76,73 @@ function random_item(items) {
         await page.setDefaultNavigationTimeout(0);
         await page.goto('https://www.blacklistseller.com/report/report_search_success_page?bank_number=&first_name=พงศกร&last_name=', { waitUntil: 'networkidle0' });
 
-        console.log(await page.content());
+        try {
+            console.log(await page.content());
+        } catch (error) {
+            //skip loop
+            donevar = true;
+        }
 
-        //get html
-        const html = await page.content();
-        console.log(html);
-        //console.log(html);
+        if (!donevar) {
+            //get html
+            const html = await page.content();
+            console.log(html);
+            //console.log(html);
 
-        await browser.close();
+            await browser.close();
 
-        const $ = cheerio.load(html);
-        //cheerio select td elements with class name 'mobile_td'
-        const mobile_td = $('td .mobile_td');
-        //cheerio console log mobile_td InnerText
-        //console.log(mobile_td);
-        //console.log(mobile_td)
-        //let hee = 0;
-        let flname
-        let skip = false;
-        /*$('a').toArray().forEach(function (element) {
-            if (element.firstChild.data == 'Cloudflare') {
-                skip = true;
-            }
-        });
-        if(skip != true){
+            const $ = cheerio.load(html);
+            //cheerio select td elements with class name 'mobile_td'
+            const mobile_td = $('td .mobile_td');
+            //cheerio console log mobile_td InnerText
+            //console.log(mobile_td);
+            //console.log(mobile_td)
+            //let hee = 0;
+            let flname
+            let skip = false;
+            /*$('a').toArray().forEach(function (element) {
+                if (element.firstChild.data == 'Cloudflare') {
+                    skip = true;
+                }
+            });
+            if(skip != true){
+                mobile_td.toArray().forEach(element => {
+                    //console.log(element.firstChild.data)
+                    try {
+                        console.log(mobile_td.toArray().length)
+                        console.log(element.firstChild.data)
+                        console.log(hee)
+                        hee++;
+                    } catch (error) {
+                        console.log('firstChild.data not found')
+                    }
+                });
+            }*/
+            //console.log(mobile_td.toArray()[7].firstChild.data)
+            /*if (mobile_td.toArray().length > 5) {
+                if(mobile_td.toArray()[7].firstChild.data) {
+                    donevar = true;
+                }
+            }*/
+            //if (flname) {
+            donevar = true;
+            //}
+            $('a').toArray().forEach(function (element) {
+                if (element.firstChild.data == 'Cloudflare') {
+                    skip = true;
+                }
+            });
             mobile_td.toArray().forEach(element => {
                 //console.log(element.firstChild.data)
                 try {
                     console.log(mobile_td.toArray().length)
                     console.log(element.firstChild.data)
                     console.log(hee)
-                    hee++;
+                    //hee++;
                 } catch (error) {
                     console.log('firstChild.data not found')
                 }
             });
-        }*/
-        //console.log(mobile_td.toArray()[7].firstChild.data)
-        /*if (mobile_td.toArray().length > 5) {
-            if(mobile_td.toArray()[7].firstChild.data) {
-                donevar = true;
-            }
-        }*/
-        //if (flname) {
-            donevar = true;
-        //}
-        $('a').toArray().forEach(function (element) {
-            if (element.firstChild.data == 'Cloudflare') {
-                skip = true;
-            }
-        });
-        mobile_td.toArray().forEach(element => {
-            //console.log(element.firstChild.data)
-            try {
-                console.log(mobile_td.toArray().length)
-                console.log(element.firstChild.data)
-                console.log(hee)
-                //hee++;
-            } catch (error) {
-                console.log('firstChild.data not found')
-            }
-        });
+        }
     }
 })();
