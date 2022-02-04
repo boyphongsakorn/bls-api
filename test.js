@@ -100,7 +100,8 @@ function random_item(items) {
                         console.log(hee)
                         //hee++;
                         //if element.firstChild.data like name, then get the name
-                        if (hee==7) {
+                        if (hee==8) {
+                            //convert to string
                             flname = element.firstChild.data
                             console.log(flname)
                         }
