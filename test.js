@@ -108,6 +108,8 @@ function random_item(items) {
                             console.log(flname)
                         }
                         hee++;
+                    }else{
+                        break;
                     }
                 } catch (error) {
                     console.log('firstChild.data not found')
