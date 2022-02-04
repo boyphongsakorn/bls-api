@@ -75,7 +75,7 @@ function random_item(items) {
                 console.log('Page not found');
                 await browser.close();
                 donevar = true;
-                break;
+                continue;
             }
 
             //get html
