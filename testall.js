@@ -91,10 +91,10 @@ function random_item(items) {
         //cheerio console log mobile_td InnerText
         //console.log(mobile_td);
         //console.log(mobile_td)
-        let hee = 0;
+        //let hee = 0;
         let flname
         let skip = false;
-        $('a').toArray().forEach(function (element) {
+        /*$('a').toArray().forEach(function (element) {
             if (element.firstChild.data == 'Cloudflare') {
                 skip = true;
             }
@@ -111,15 +111,26 @@ function random_item(items) {
                     console.log('firstChild.data not found')
                 }
             });
-        }
+        }*/
         //console.log(mobile_td.toArray()[7].firstChild.data)
         /*if (mobile_td.toArray().length > 5) {
             if(mobile_td.toArray()[7].firstChild.data) {
                 donevar = true;
             }
         }*/
-        if (flname) {
+        //if (flname) {
             donevar = true;
-        }
+        //}
+        mobile_td.toArray().forEach(element => {
+            //console.log(element.firstChild.data)
+            try {
+                console.log(mobile_td.toArray().length)
+                console.log(element.firstChild.data)
+                console.log(hee)
+                //hee++;
+            } catch (error) {
+                console.log('firstChild.data not found')
+            }
+        });
     }
 })();
