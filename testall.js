@@ -1,13 +1,121 @@
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
-//expressjs
-const express = require('express');
-//cheerio
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
+const randomUseragent = require('random-useragent');
 const cheerio = require('cheerio');
-//puppeteer
-//const puppeteer = require('puppeteer');
+const proxyChain = require('proxy-chain');
+
+function random_item(items) {
+    return items[Math.floor(Math.random() * items.length)];
+}
 
 (async () => {
-    const response = await fetch('https://www.blacklistseller.com/report/report_preview/146052');
-    const body = await response.text();
-    console.log(body);
+    let donevar = false
+    let namelist = [];
+    //create with donevar = true end the loop
+    while (!donevar) {
+        const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36';
+
+        //const oldProxyUrl = process.env.PROXY_SERVER || 'http://14.207.125.75:8080';
+        /*let proxylist = [];
+        await fetch('https://www.proxy-list.download/api/v1/get?type=http')
+            .then(res => res.text())
+            .then((body) => {
+                proxylist = []
+                //console.log(body.split("\r\n"))
+                proxylist = body.split("\r\n")
+                proxylist.pop()
+                console.log(proxylist)
+            })
+    
+        const newProxyUrl = await proxyChain.anonymizeProxy('http://'+random_item(proxylist));
+        //const newProxyUrl = await proxyChain.anonymizeProxy('http://47.56.69.11:8000');
+    
+        let browser = await puppeteer.launch(
+            {
+                headless: true, executablePath: process.env.CHROME_BIN || null, args: [
+                    '--no-sandbox', '--disable-setuid-sandbox', `--proxy-server=${newProxyUrl}`
+                ], ignoreHTTPSErrors: true, dumpio: false
+            }
+        );*/
+
+        let browser = await puppeteer.launch(
+            {
+                headless: true, executablePath: process.env.CHROME_BIN || null, args: [
+                    '--no-sandbox', '--disable-setuid-sandbox'
+                ], ignoreHTTPSErrors: true, dumpio: false
+            }
+        );
+
+        let page = await browser.newPage();
+        const userAgent = randomUseragent.getRandom();
+        const UA = userAgent || USER_AGENT;
+
+        //Randomize viewport size
+        await page.setViewport({
+            width: 1920 + Math.floor(Math.random() * 100),
+            height: 3000 + Math.floor(Math.random() * 100),
+            deviceScaleFactor: 1,
+            hasTouch: false,
+            isLandscape: false,
+            isMobile: false,
+        });
+
+        await page.setUserAgent(UA);
+        await page.setJavaScriptEnabled(true);
+        await page.setDefaultNavigationTimeout(0);
+        await page.goto('https://www.blacklistseller.com/report/report_search_success_page?bank_number=&first_name=%E0%B8%9E%E0%B8%87%E0%B8%A8%E0%B8%81%E0%B8%A3&last_name=', { waitUntil: 'networkidle0' });
+
+        //if page has notfound class, then it means the page is not found
+        if (await page.$('.notfound') !== null) {
+            console.log('Page not found');
+            await browser.close();
+            donevar = true;
+            break;
+        }
+
+        //get html
+        const html = await page.content();
+        //console.log(html);
+        //console.log(html);
+
+        await browser.close();
+
+        const $ = cheerio.load(html);
+        //cheerio select td elements with class name 'mobile_td'
+        const mobile_td = $('td .mobile_td');
+        //cheerio console log mobile_td InnerText
+        //console.log(mobile_td);
+        //console.log(mobile_td)
+        let hee = 0;
+        let flname
+        let skip = false;
+        $('a').toArray().forEach(function (element) {
+            if (element.firstChild.data == 'Cloudflare') {
+                skip = true;
+            }
+        });
+        if(skip != true){
+            mobile_td.toArray().forEach(element => {
+                //console.log(element.firstChild.data)
+                try {
+                    console.log(element.firstChild.data)
+                    console.log(hee)
+                    hee++;
+                } catch (error) {
+                    console.log('firstChild.data not found')
+                }
+            });
+        }
+        //console.log(mobile_td.toArray()[7].firstChild.data)
+        /*if (mobile_td.toArray().length > 5) {
+            if(mobile_td.toArray()[7].firstChild.data) {
+                donevar = true;
+            }
+        }*/
+        if (flname) {
+            donevar = true;
+        }
+    }
 })();

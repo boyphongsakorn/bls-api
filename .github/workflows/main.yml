@@ -48,4 +48,5 @@ jobs:
       #- run: npm run index
       #- run: npm god
 
-      - run: node test.js
+      #- run: node test.js
+      - run: node testall.js
