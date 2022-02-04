@@ -11,10 +11,11 @@ function random_item(items) {
 }
 
 (async () => {
+    let donevar
     let namelist = [];
     //loop 100 times
     for (let i = 0; i < 100; i++) {
-        let donevar = false;
+        donevar = false;
         //create with donevar = true end the loop
         while (!donevar) {
             const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36';
