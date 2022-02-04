@@ -116,7 +116,9 @@ function random_item(items) {
             });
             $('td').toArray().forEach(element => {
                 try {
+                    console.log('---')
                     console.log(element.firstChild.data)
+                    console.log('---')
                 } catch (error) {
                     console.log('firstChild.data not found')
                 }
