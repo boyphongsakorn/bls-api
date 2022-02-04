@@ -67,14 +67,6 @@ function random_item(items) {
         await page.setDefaultNavigationTimeout(0);
         await page.goto('https://www.blacklistseller.com/report/report_search_success_page?bank_number=&first_name=%E0%B8%9E%E0%B8%87%E0%B8%A8%E0%B8%81%E0%B8%A3&last_name=', { waitUntil: 'networkidle0' });
 
-        //if page has notfound class, then it means the page is not found
-        if (await page.$('.notfound') !== null) {
-            console.log('Page not found');
-            await browser.close();
-            donevar = true;
-            break;
-        }
-
         //get html
         const html = await page.content();
         //console.log(html);
