@@ -121,6 +121,9 @@ function random_item(items) {
                     console.log('firstChild.data not found')
                 }
             });
+            console.log($('td').toArray()[3].firstChild.data)
+            console.log($('td').toArray()[4].firstChild.data)
+            console.log($('td').toArray()[8].firstChild.data)
             //console.log(mobile_td.toArray()[7].firstChild.data)
             /*if (mobile_td.toArray().length > 5) {
                 if(mobile_td.toArray()[7].firstChild.data) {
