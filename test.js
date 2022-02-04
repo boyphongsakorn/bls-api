@@ -93,6 +93,7 @@ function random_item(items) {
             //console.log(mobile_td)
             let hee = 0;
             let flname
+            let skip =false;
             mobile_td.toArray().forEach(element => {
                 //console.log(element.firstChild.data)
                 try {
@@ -109,7 +110,7 @@ function random_item(items) {
                         }
                         hee++;
                     }else{
-                        break;
+                        skip = true;
                     }
                 } catch (error) {
                     console.log('firstChild.data not found')
@@ -124,12 +125,14 @@ function random_item(items) {
                     console.log('firstChild.data not found')
                 }
             });
-            console.log($('td').toArray()[2].firstChild.data)
-            console.log($('td').toArray()[3].firstChild.data)
-            console.log($('td').toArray()[5].firstChild.data)
-            //remove all the white space from $('td').toArray()[5].firstChild.data
-            let webpage = $('td').toArray()[5].firstChild.data.replace(/\s/g, '');
-            namelist.push([flname,$('td').toArray()[2].firstChild.data,$('td').toArray()[3].firstChild.data,webpage,,,])
+            if(skip != true){
+                console.log($('td').toArray()[2].firstChild.data)
+                console.log($('td').toArray()[3].firstChild.data)
+                console.log($('td').toArray()[5].firstChild.data)
+                //remove all the white space from $('td').toArray()[5].firstChild.data
+                let webpage = $('td').toArray()[5].firstChild.data.replace(/\s/g, '');
+                namelist.push([flname,$('td').toArray()[2].firstChild.data,$('td').toArray()[3].firstChild.data,webpage,,,])
+            }
             //console.log(mobile_td.toArray()[7].firstChild.data)
             /*if (mobile_td.toArray().length > 5) {
                 if(mobile_td.toArray()[7].firstChild.data) {
