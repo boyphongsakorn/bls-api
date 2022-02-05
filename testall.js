@@ -95,7 +95,7 @@ function random_item(items) {
         } catch (error) {
             //skip loop
             //donevar = false;
-            skip = true;
+            //skip = true;
         }
 
         if (!skip) {
@@ -153,7 +153,9 @@ function random_item(items) {
                 try {
                     console.log(mobile_td.toArray().length)
                     console.log('---')
-                    console.log(element.firstChild.data)
+                    //console.log(element.firstChild.data)
+                    //get innerHTML of element
+                    console.log(element.html())
                     console.log('---')
                     console.log(hee)
                     //hee++;
