@@ -21,12 +21,13 @@ function random_item(items) {
 
         //const oldProxyUrl = process.env.PROXY_SERVER || 'http://14.207.125.75:8080';
         let proxylist = [];
-        await fetch('https://www.proxy-list.download/api/v1/get?type=http&country=TH')
+        await fetch('https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/http.txt')
             .then(res => res.text())
             .then((body) => {
+                //console.log(body)
                 proxylist = []
                 //console.log(body.split("\r\n"))
-                proxylist = body.split("\r\n")
+                proxylist = body.split("\n")
                 proxylist.pop()
                 console.log(proxylist)
             })
@@ -83,6 +84,10 @@ function random_item(items) {
         } catch (error) {
             donevar = false
             skip = true
+            console.log('not working')
+            //await browser.close();
+        } finally {
+            await browser.close();
         }
         
         try {
@@ -109,6 +114,9 @@ function random_item(items) {
             //skip loop
             //donevar = false;
             skip = true;
+            //await browser.close();
+        } finally {
+            await browser.close();
         }
 
         if (!skip) {
