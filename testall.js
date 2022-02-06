@@ -157,6 +157,7 @@ function random_item(items) {
                     //console.log(element.firstChild.data)
                     //get innerHTML of element
                     console.log(element.html())
+                    console.log(element.text())
                     console.log('---')
                     console.log(hee)
                     //hee++;
