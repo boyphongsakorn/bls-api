@@ -79,13 +79,14 @@ function random_item(items) {
         let skip = false;
         
         try {
-            console.log(await page.content());
+            const testhtml = await page.content();
             /*$('a').toArray().forEach(function (element) {
                 if (element.firstChild.data == 'Cloudflare') {
                     skip = true;
                 }
             });*/
-            $('a').toArray().forEach(element => {
+            const wri = cheerio.load(testhtml);
+            wri('a').toArray().forEach(element => {
                 if (element.firstChild.data == 'Cloudflare') {
                     skip = true;
                     donevar = false;
@@ -95,7 +96,7 @@ function random_item(items) {
         } catch (error) {
             //skip loop
             //donevar = false;
-            //skip = true;
+            skip = true;
         }
 
         if (!skip) {
