@@ -14,7 +14,7 @@ function random_item(items) {
     let donevar = false
     let namelist = [];
     //create with donevar = true end the loop
-    while (!donevar) {
+    while (donevar == false) {
         const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.75 Safari/537.36';
 
         //const oldProxyUrl = process.env.PROXY_SERVER || 'http://14.207.125.75:8080';
