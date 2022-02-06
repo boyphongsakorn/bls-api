@@ -85,8 +85,8 @@ function random_item(items) {
                     skip = true;
                 }
             });*/
-            const wri = cheerio.load(testhtml);
-            wri('a').toArray().forEach(element => {
+            const $ = cheerio.load(testhtml);
+            $('a').toArray().forEach(element => {
                 if (element.firstChild.data == 'Cloudflare') {
                     skip = true;
                     donevar = false;
