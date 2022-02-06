@@ -165,6 +165,11 @@ function random_item(items) {
                     console.log('firstChild.data not found')
                 }
             });
+            if(donevar == true) {
+                console.log('done')
+                //end loop
+                return donevar = true;
+            }
         }
     }
 })();
