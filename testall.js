@@ -168,7 +168,8 @@ function random_item(items) {
             if(donevar == true) {
                 console.log('done')
                 //end loop
-                return donevar = true;
+                //return donevar = true;
+                break;
             }
         }
     }
