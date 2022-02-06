@@ -5,6 +5,8 @@ puppeteer.use(StealthPlugin());
 const randomUseragent = require('random-useragent');
 const cheerio = require('cheerio');
 const proxyChain = require('proxy-chain');
+//setup fs
+const fs = require('fs');
 
 function random_item(items) {
     return items[Math.floor(Math.random() * items.length)];
@@ -19,7 +21,7 @@ function random_item(items) {
 
         //const oldProxyUrl = process.env.PROXY_SERVER || 'http://14.207.125.75:8080';
         /*let proxylist = [];
-        await fetch('https://www.proxy-list.download/api/v1/get?type=http')
+        await fetch('https://www.proxy-list.download/api/v1/get?type=http&country=TH')
             .then(res => res.text())
             .then((body) => {
                 proxylist = []
@@ -29,8 +31,8 @@ function random_item(items) {
                 console.log(proxylist)
             })
     
-        const newProxyUrl = await proxyChain.anonymizeProxy('http://'+random_item(proxylist));
-        //const newProxyUrl = await proxyChain.anonymizeProxy('http://47.56.69.11:8000');
+        const newProxyUrl = await proxyChain.anonymizeProxy('http://'+random_item(proxylist));*/
+        const newProxyUrl = await proxyChain.anonymizeProxy('http://183.89.64.122:8080');
     
         let browser = await puppeteer.launch(
             {
@@ -38,15 +40,15 @@ function random_item(items) {
                     '--no-sandbox', '--disable-setuid-sandbox', `--proxy-server=${newProxyUrl}`
                 ], ignoreHTTPSErrors: true, dumpio: false
             }
-        );*/
+        );
 
-        let browser = await puppeteer.launch(
+        /*let browser = await puppeteer.launch(
             {
                 headless: true, executablePath: process.env.CHROME_BIN || null, args: [
                     '--no-sandbox', '--disable-setuid-sandbox'
                 ], ignoreHTTPSErrors: true, dumpio: false
             }
-        );
+        );*/
 
         let page = await browser.newPage();
         const userAgent = randomUseragent.getRandom();
@@ -62,6 +64,8 @@ function random_item(items) {
             isMobile: false,
         });*/
 
+        let skip = false;
+
         await page.setViewport({
             width: 1920,
             height: 1080,
@@ -74,9 +78,12 @@ function random_item(items) {
         await page.setUserAgent(UA);
         await page.setJavaScriptEnabled(true);
         await page.setDefaultNavigationTimeout(0);
-        await page.goto('https://www.blacklistseller.com/report/report_search_success_page?bank_number=&first_name=พงศกร&last_name=', { waitUntil: 'networkidle0' });
-
-        let skip = false;
+        try {
+            await page.goto('https://www.blacklistseller.com/report/report_search_success_page?bank_number=&first_name=พงศกร&last_name=', { waitUntil: 'networkidle0',timeout: 60000 });
+        } catch (error) {
+            donevar = false
+            skip = true
+        }
         
         try {
             const testhtml = await page.content();
@@ -85,13 +92,18 @@ function random_item(items) {
                     skip = true;
                 }
             });*/
+            //console.log(testhtml)
             const $ = cheerio.load(testhtml);
             $('a').toArray().forEach(element => {
-                if (element.firstChild.data == 'Cloudflare') {
+                if (element.firstChild.data == 'Cloudflare' || element.firstChild.data == 'www.blacklistseller.com') {
                     skip = true;
                     donevar = false;
+                    console.log(element.firstChild.data)
+                }else{
+                    console.log('wait')
+                    console.log(element.firstChild.data)
                 }
-                console.log(element.firstChild.data)
+                //console.log(element.firstChild.data)
             });
         } catch (error) {
             //skip loop
@@ -149,24 +161,28 @@ function random_item(items) {
                 }
                 console.log(element.firstChild.data)
             });*/
+            let hee = 0;
+            console.log(mobile_td.toArray().length)
             mobile_td.toArray().forEach(element => {
                 //console.log(element.firstChild.data)
                 try {
-                    console.log(mobile_td.toArray().length)
+                    //console.log(mobile_td.toArray().length)
                     console.log('---')
                     //console.log(element.firstChild.data)
                     //get innerHTML of element
                     console.log(element.html())
+                    //write to file
+                    fs.writeFileSync(hee+'.txt', element.html());
                     console.log(element.text())
                     console.log('---')
                     //console.log(hee)
-                    //hee++;
+                    hee++;
                 } catch (error) {
                     console.log('firstChild.data not found')
                 }
             });
             //check browser is closed
-            if (browser.isClosed()) {
+            if (donevar) {
                 //end loop
                 donevar = true;
             }
