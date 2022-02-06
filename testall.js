@@ -142,13 +142,13 @@ function random_item(items) {
             //if (flname) {
             donevar = true;
             //}
-            $('a').toArray().forEach(element => {
+            /*$('a').toArray().forEach(element => {
                 if (element.firstChild.data == 'Cloudflare') {
                     skip = true;
                     donevar = false;
                 }
                 console.log(element.firstChild.data)
-            });
+            });*/
             mobile_td.toArray().forEach(element => {
                 //console.log(element.firstChild.data)
                 try {
@@ -159,7 +159,7 @@ function random_item(items) {
                     console.log(element.html())
                     console.log(element.text())
                     console.log('---')
-                    console.log(hee)
+                    //console.log(hee)
                     //hee++;
                 } catch (error) {
                     console.log('firstChild.data not found')
